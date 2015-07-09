@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		496E0CF61B4D01AB00AEA47F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E0CF51B4D01AB00AEA47F /* CoreLocation.framework */; };
 		496E0CF81B4D160400AEA47F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496E0CF71B4D160400AEA47F /* MapKit.framework */; };
+		496E0CFB1B4E5FD300AEA47F /* GameJoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496E0CFA1B4E5FD300AEA47F /* GameJoinModel.m */; };
 		49D9AEB51B4BB19500B61859 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D9AEB41B4BB19500B61859 /* main.m */; };
 		49D9AEB81B4BB19500B61859 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D9AEB71B4BB19500B61859 /* AppDelegate.m */; };
 		49D9AEBB1B4BB19500B61859 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D9AEBA1B4BB19500B61859 /* ViewController.m */; };
@@ -31,6 +32,8 @@
 /* Begin PBXFileReference section */
 		496E0CF51B4D01AB00AEA47F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		496E0CF71B4D160400AEA47F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		496E0CF91B4E5FD300AEA47F /* GameJoinModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameJoinModel.h; sourceTree = "<group>"; };
+		496E0CFA1B4E5FD300AEA47F /* GameJoinModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameJoinModel.m; sourceTree = "<group>"; };
 		49D9AEAF1B4BB19500B61859 /* Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D9AEB31B4BB19500B61859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49D9AEB41B4BB19500B61859 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 				49D9AEBF1B4BB19500B61859 /* Images.xcassets */,
 				49D9AEC11B4BB19500B61859 /* LaunchScreen.xib */,
 				49D9AEB21B4BB19500B61859 /* Supporting Files */,
+				496E0CF91B4E5FD300AEA47F /* GameJoinModel.h */,
+				496E0CFA1B4E5FD300AEA47F /* GameJoinModel.m */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49D9AEBB1B4BB19500B61859 /* ViewController.m in Sources */,
+				496E0CFB1B4E5FD300AEA47F /* GameJoinModel.m in Sources */,
 				49D9AEB81B4BB19500B61859 /* AppDelegate.m in Sources */,
 				49D9AEB51B4BB19500B61859 /* main.m in Sources */,
 			);
