@@ -40,6 +40,11 @@
     
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading];
     
+    // TODO:
+    // Setup Join Game button
+    // Setup Leave Game button
+    // Setup auto-game leave on application terminate (see AppDelegate.m)
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,7 +79,11 @@
 {
     if (success) {
 #warning Incomplete Implementation.
-        //yay!
+        if (self.name && self.game) {
+            [self.locationManager startUpdatingLocation];
+        } else {
+            [self joinGame];
+        }
     } else {
         UIAlertController *joinFail = [UIAlertController
                                        alertControllerWithTitle:@"Join Failed"
@@ -114,7 +123,13 @@
 
 - (void) updateMap
 {
-    
+    // TODO:
+    // Update location to server
+    // Get location of other peeps in area from server
+    // Show other peeps on map
+    // Calculate distance to other peeps
+    // Show / Don't show Tag button
+    // Send tag request to server
 }
 
 #pragma mark - Location Handler
