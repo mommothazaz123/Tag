@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    ViewController *_mapController;
+}
 
 @end
 
@@ -40,6 +42,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [_mapController leaveGame];
 }
 
 @end

@@ -11,6 +11,7 @@
 @interface ViewController (){
     NSMutableData *_downloadedData;
     GameJoinModel *_gameJoinModel;
+    GameLeaveModel *_gameLeaveModel;
 }
 
 @end
@@ -42,9 +43,11 @@
     
 #warning TODO
     // TODO:
-    // Setup Join Game button
-    // Setup Leave Game button
-    // Setup auto-game leave on application terminate (see AppDelegate.m)
+    // Setup background location updating
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Join Game" style:UIBarButtonItemStylePlain target:self action:@selector(joinGame)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Leave Game" style:UIBarButtonItemStylePlain target:self action:@selector(leaveGame)];
     
 }
 
@@ -55,31 +58,56 @@
 
 #pragma mark - Game Handling
 
+- (void)leaveGame
+{
+    // Create new object and assign it to variable
+    _gameLeaveModel = [[GameLeaveModel alloc] init];
+    
+    // Set this view controller object as the delegate for the model object
+    _gameLeaveModel.delegate = self;
+    
+    // Call the download items method of the model object
+    [_gameLeaveModel leaveGameWithName:self.name];
+}
+
 - (void) joinGame
 {
-    UIAlertController *joinMenu = [UIAlertController
-                                   alertControllerWithTitle:@"Join Game"
-                                   message:@"Please join a game."
-                                   preferredStyle:UIAlertControllerStyleAlert];
-    [joinMenu addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Name";
+    if (self.game){
+        UIAlertController *joinMenu = [UIAlertController
+                                       alertControllerWithTitle:@"Join Game"
+                                       message:@"Please leave your current game first!"
+                                       preferredStyle:UIAlertControllerStyleAlert];
+        [joinMenu addAction:[UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:nil]];
+        [self presentViewController:joinMenu animated:YES completion:nil];
+    } else {
+        UIAlertController *joinMenu = [UIAlertController
+                                       alertControllerWithTitle:@"Join Game"
+                                       message:@"Please join a game."
+                                       preferredStyle:UIAlertControllerStyleAlert];
+        [joinMenu addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"Name";
         }];
-    [joinMenu addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Game";
+        [joinMenu addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"Game";
         }];
-    [joinMenu addAction:[UIAlertAction
-                         actionWithTitle:@"Join"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction *action){
-                             [self alertControllerHandler:joinMenu];
-                         }]];
-    [self presentViewController:joinMenu animated:YES completion:nil];
+        [joinMenu addAction:[UIAlertAction
+                             actionWithTitle:@"Join"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action){
+                                 [self alertControllerHandler:joinMenu];
+                             }]];
+        [self presentViewController:joinMenu animated:YES completion:nil];
+    }
 }
+
+#pragma mark - Game Delegate Methods
 
 - (void) gameJoined:(BOOL)success
 {
     if (success) {
-#warning Incomplete Implementation.
         if (self.name && self.game) {
             [self.locationManager startUpdatingLocation];
         } else {
@@ -100,6 +128,35 @@
     }
 }
 
+- (void)gameLeft:(BOOL)success
+{
+    if (success) {
+        self.name = nil;
+        self.game = nil;
+        UIAlertController *leaveSuccess = [UIAlertController
+                                        alertControllerWithTitle:@"Leave Complete"
+                                        message:@"You have left the game."
+                                        preferredStyle:UIAlertControllerStyleAlert];
+        [leaveSuccess addAction:[UIAlertAction
+                              actionWithTitle:@"OK"
+                              style:UIAlertActionStyleDefault
+                              handler:nil]];
+        [self presentViewController:leaveSuccess animated:YES completion:nil];
+    } else {
+        UIAlertController *leaveFail = [UIAlertController
+                                       alertControllerWithTitle:@"Leave Failed"
+                                       message:@"Failed to leave game, try again"
+                                       preferredStyle:UIAlertControllerStyleAlert];
+        [leaveFail addAction:[UIAlertAction
+                             actionWithTitle:@"Retry"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action){
+                                 [self leaveGame];
+                             }]];
+        [self presentViewController:leaveFail animated:YES completion:nil];
+    }
+}
+
 #pragma mark - Alert View
 
 - (void) alertControllerHandler:(UIAlertController*)controller
@@ -110,13 +167,13 @@
     self.game = game;
     self.name = name;
     
-    // Create new HomeModel object and assign it to _homeModel variable
+    // Create new object and assign it to variable
     _gameJoinModel = [[GameJoinModel alloc] init];
     
-    // Set this view controller object as the delegate for the home model object
+    // Set this view controller object as the delegate for the model object
     _gameJoinModel.delegate = self;
     
-    // Call the download items method of the home model object
+    // Call the download items method of the model object
     [_gameJoinModel joinGame:game withName:name];
 }
 

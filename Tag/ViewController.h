@@ -10,13 +10,16 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "GameJoinModel.h"
+#import "GameLeaveModel.h"
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate, GameJoinModelProtocol>
+@interface ViewController : UIViewController <CLLocationManagerDelegate, GameJoinModelProtocol, GameLeaveModelProtocol>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *game;
+
+- (void)leaveGame;
 
 @end
 
