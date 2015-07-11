@@ -40,6 +40,7 @@
     
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading];
     
+#warning TODO
     // TODO:
     // Setup Join Game button
     // Setup Leave Game button
@@ -123,6 +124,7 @@
 
 - (void) updateMap
 {
+#warning TODO
     // TODO:
     // Update location to server
     // Get location of other peeps in area from server
