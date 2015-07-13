@@ -142,6 +142,7 @@
     if (success) {
         self.name = nil;
         self.game = nil;
+        [self.locationManager stopUpdatingLocation];
         UIAlertController *leaveSuccess = [UIAlertController
                                         alertControllerWithTitle:@"Leave Complete"
                                         message:@"You have left the game."
@@ -192,7 +193,9 @@
 #warning TODO
     // TODO:
     // Update location to server - Thread 1
-    [_locationUpdateModel updateLocationWithLocation:locationManager.location andName:self.name];
+    if (self.name && self.game) {
+        [_locationUpdateModel updateLocationWithLocation:locationManager.location andName:self.name];
+    }
     // Get location of other peeps in area from server - T2
     // Show other peeps on map - T2
     // Calculate distance to other peeps - T2
