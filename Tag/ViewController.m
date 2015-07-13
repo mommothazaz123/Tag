@@ -12,6 +12,7 @@
     NSMutableData *_downloadedData;
     GameJoinModel *_gameJoinModel;
     GameLeaveModel *_gameLeaveModel;
+    LocationUpdateModel *_locationUpdateModel;
 }
 
 @end
@@ -49,6 +50,18 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Leave Game" style:UIBarButtonItemStylePlain target:self action:@selector(leaveGame)];
     
+    // Set up Model objects
+    // Create new object and assign it to variable
+    _gameLeaveModel = [[GameLeaveModel alloc] init];
+    _gameJoinModel = [[GameJoinModel alloc] init];
+    _locationUpdateModel = [[LocationUpdateModel alloc] init];
+    
+    // Set this view controller object as the delegate for the model object
+    _gameLeaveModel.delegate = self;
+    _gameJoinModel.delegate = self;
+    _locationUpdateModel.delegate = self;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,12 +73,6 @@
 
 - (void)leaveGame
 {
-    // Create new object and assign it to variable
-    _gameLeaveModel = [[GameLeaveModel alloc] init];
-    
-    // Set this view controller object as the delegate for the model object
-    _gameLeaveModel.delegate = self;
-    
     // Call the download items method of the model object
     [_gameLeaveModel leaveGameWithName:self.name];
 }
@@ -122,6 +129,8 @@
                              actionWithTitle:@"Retry"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction *action){
+                                 self.name = nil;
+                                 self.game = nil;
                                  [self joinGame];
                              }]];
         [self presentViewController:joinFail animated:YES completion:nil];
@@ -157,6 +166,11 @@
     }
 }
 
+- (void)locationUpdated:(BOOL)success
+{
+    
+}
+
 #pragma mark - Alert View
 
 - (void) alertControllerHandler:(UIAlertController*)controller
@@ -166,12 +180,6 @@
     
     self.game = game;
     self.name = name;
-    
-    // Create new object and assign it to variable
-    _gameJoinModel = [[GameJoinModel alloc] init];
-    
-    // Set this view controller object as the delegate for the model object
-    _gameJoinModel.delegate = self;
     
     // Call the download items method of the model object
     [_gameJoinModel joinGame:game withName:name];
@@ -183,12 +191,13 @@
 {
 #warning TODO
     // TODO:
-    // Update location to server
-    // Get location of other peeps in area from server
-    // Show other peeps on map
-    // Calculate distance to other peeps
-    // Show / Don't show Tag button
-    // Send tag request to server
+    // Update location to server - Thread 1
+    [_locationUpdateModel updateLocationWithLocation:locationManager.location andName:self.name];
+    // Get location of other peeps in area from server - T2
+    // Show other peeps on map - T2
+    // Calculate distance to other peeps - T2
+    // Show / Don't show Tag button - T1
+    // Send tag request to server - T1
 }
 
 #pragma mark - Location Handler

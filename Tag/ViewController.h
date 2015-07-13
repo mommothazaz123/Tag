@@ -11,8 +11,9 @@
 #import <MapKit/MapKit.h>
 #import "GameJoinModel.h"
 #import "GameLeaveModel.h"
+#import "LocationUpdateModel.h"
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate, GameJoinModelProtocol, GameLeaveModelProtocol>
+@interface ViewController : UIViewController <CLLocationManagerDelegate, GameJoinModelProtocol, GameLeaveModelProtocol, LocationUpdateModelProtocol>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
