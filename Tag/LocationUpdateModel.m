@@ -1,29 +1,29 @@
 //
-//  GameJoinModel.m
+//  LocationUpdateModel.m
 //  Tag
 //
-//  Created by Andrew Zhu on 7/9/15.
+//  Created by Andrew Zhu on 7/12/15.
 //  Copyright (c) 2015 Andrew Zhu. All rights reserved.
 //
 
-#import "GameJoinModel.h"
+#import "LocationUpdateModel.h"
 
-@interface GameJoinModel()
+@interface LocationUpdateModel()
 {
     NSMutableData *_downloadedData;
 }
 @end
 
-@implementation GameJoinModel
+@implementation LocationUpdateModel
 
-- (void)joinGame:(NSString *)game withName:(NSString *)name
+- (void)updateLocationWithLocation:(CLLocation *)location andName:(NSString *)name
 {
     // Download the json file
-    NSString *urlString = [NSString stringWithFormat:@"http://shpquad.org/experimental/joingame.php?name=%@&game=%@", name, game];
-    NSURL *joinGameUrl = [NSURL URLWithString:urlString];
+    NSString *urlString = [NSString stringWithFormat:@"http://shpquad.org/experimental/updateloc.php?name=%@&lat=%f&long=%f", name, location.coordinate.latitude, location.coordinate.longitude];
+    NSURL *updateLocUrl = [NSURL URLWithString:urlString];
     
     // Create the request
-    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:joinGameUrl];
+    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:updateLocUrl];
     
     // Create the NSURLConnection
     [NSURLConnection connectionWithRequest:urlRequest delegate:self];
@@ -48,10 +48,11 @@
     BOOL success = _downloadedData;
     // Ready to notify delegate that data is ready and pass back items
     if (self.delegate && success) {
-        [self.delegate gameJoined:YES];
+        [self.delegate locationUpdated:YES];
     } else if (self.delegate) {
-        [self.delegate gameJoined:NO];
+        [self.delegate locationUpdated:NO];
     }
 }
 
 @end
+

@@ -19,12 +19,11 @@
 - (void)leaveGameWithName:(NSString *)name
 {
     // Download the json file
-#warning Incomplete Implementation on ServerSide and ClientSide
-    NSString *urlString = [NSString stringWithFormat:@"http://example.com/leavegame.php?name=%@", name];
-    NSURL *jsonFileUrl = [NSURL URLWithString:urlString];
+    NSString *urlString = [NSString stringWithFormat:@"http://shpquad.org/experimental/leavegame.php?name=%@", name];
+    NSURL *leaveGameUrl = [NSURL URLWithString:urlString];
     
     // Create the request
-    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:jsonFileUrl];
+    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:leaveGameUrl];
     
     // Create the NSURLConnection
     [NSURLConnection connectionWithRequest:urlRequest delegate:self];
