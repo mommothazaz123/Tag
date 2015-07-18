@@ -19,6 +19,8 @@
 		49D9AEC01B4BB19500B61859 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D9AEBF1B4BB19500B61859 /* Images.xcassets */; };
 		49D9AEC31B4BB19500B61859 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D9AEC11B4BB19500B61859 /* LaunchScreen.xib */; };
 		49D9AECF1B4BB19500B61859 /* TagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D9AECE1B4BB19500B61859 /* TagTests.m */; };
+		49E201C61B5A6FD2001BFCA1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E201C51B5A6FD2001BFCA1 /* Player.m */; };
+		49E201C91B5A7115001BFCA1 /* GameDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E201C81B5A7115001BFCA1 /* GameDataModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		49D9AEC81B4BB19500B61859 /* TagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D9AECD1B4BB19500B61859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49D9AECE1B4BB19500B61859 /* TagTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagTests.m; sourceTree = "<group>"; };
+		49E201C41B5A6FD2001BFCA1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		49E201C51B5A6FD2001BFCA1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		49E201C71B5A7115001BFCA1 /* GameDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataModel.h; sourceTree = "<group>"; };
+		49E201C81B5A7115001BFCA1 /* GameDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDataModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,10 @@
 				496E0CFD1B5130C800AEA47F /* GameLeaveModel.m */,
 				496E0CFF1B51FEA300AEA47F /* LocationUpdateModel.h */,
 				496E0D001B51FEA300AEA47F /* LocationUpdateModel.m */,
+				49E201C41B5A6FD2001BFCA1 /* Player.h */,
+				49E201C51B5A6FD2001BFCA1 /* Player.m */,
+				49E201C71B5A7115001BFCA1 /* GameDataModel.h */,
+				49E201C81B5A7115001BFCA1 /* GameDataModel.m */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -252,7 +262,9 @@
 				496E0CFB1B4E5FD300AEA47F /* GameJoinModel.m in Sources */,
 				49D9AEB81B4BB19500B61859 /* AppDelegate.m in Sources */,
 				49D9AEB51B4BB19500B61859 /* main.m in Sources */,
+				49E201C61B5A6FD2001BFCA1 /* Player.m in Sources */,
 				496E0D011B51FEA300AEA47F /* LocationUpdateModel.m in Sources */,
+				49E201C91B5A7115001BFCA1 /* GameDataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
