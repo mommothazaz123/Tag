@@ -16,6 +16,7 @@
     GameDataModel *_gameDataModel;
     NSArray *_players;
     NSMutableArray *_taggablePlayers;
+    PlayerTagModel *_playerTagModel;
 }
 
 @end
@@ -49,9 +50,13 @@
     // TODO:
     // Setup background location updating (Apparently it already does...?)
     
+    [self.tagButtonView setHidden:YES];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Join Game" style:UIBarButtonItemStylePlain target:self action:@selector(joinGame)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Leave Game" style:UIBarButtonItemStylePlain target:self action:@selector(leaveGame)];
+    
+    [self.tagButton addTarget:self action:@selector(tagNearbyPlayer) forControlEvents:UIControlEventTouchDown];
     
     // Set up Model objects
     // Create new object and assign it to variable
@@ -59,12 +64,14 @@
     _gameJoinModel = [[GameJoinModel alloc] init];
     _locationUpdateModel = [[LocationUpdateModel alloc] init];
     _gameDataModel = [[GameDataModel alloc]init];
+    _playerTagModel = [[PlayerTagModel alloc]init];
     
     // Set this view controller object as the delegate for the model object
     _gameLeaveModel.delegate = self;
     _gameJoinModel.delegate = self;
     _locationUpdateModel.delegate = self;
     _gameDataModel.delegate = self;
+    _playerTagModel.delegate = self;
     
     
     _taggablePlayers = [[NSMutableArray alloc]init];
@@ -77,6 +84,12 @@
 }
 
 #pragma mark - Game Handling
+
+- (void)tagNearbyPlayer
+{
+#warning todo
+    [_playerTagModel tagPlayer:[_taggablePlayers lastObject] fromPlayer:self.name inGame:self.game];
+}
 
 - (void)leaveGame
 {
@@ -149,6 +162,7 @@
     if (success) {
         self.name = nil;
         self.game = nil;
+        self.state = 0;
         [self.locationManager stopUpdatingLocation];
         UIAlertController *leaveSuccess = [UIAlertController
                                         alertControllerWithTitle:@"Leave Complete"
@@ -195,8 +209,10 @@
         Player *currentPlayer = _players[i];
         
         if ([currentPlayer.name compare:self.name] == NSOrderedSame) {
-#warning todo
             // Check to see if you're it!
+            NSLog(@"%@", @"Found me!");
+            self.state = currentPlayer.state;
+            
         } else {
             CLLocationCoordinate2D playerCoodinates;
             playerCoodinates.latitude = [currentPlayer.latitude doubleValue];
@@ -209,11 +225,23 @@
             if ([currentPlayer.state intValue] == 1) {
                 pin.subtitle = @"It!";
             } else {
-                pin.subtitle = nil;
+                pin.subtitle = [NSString stringWithFormat:@"%@", currentPlayer.name];
             }
             [self.mapView addAnnotation:pin];
             // Get distance to each player and add them to the taggable array if possible
+            MKMapPoint tagAreaMP = MKMapPointForCoordinate(self.locationManager.location.coordinate);
+            MKMapRect tagArea = MKMapRectMake(tagAreaMP.x, tagAreaMP.y, MKMapPointsPerMeterAtLatitude(self.locationManager.location.coordinate.latitude)*20, MKMapPointsPerMeterAtLatitude(self.locationManager.location.coordinate.latitude)*20);
+            if (MKMapRectContainsPoint(tagArea, MKMapPointForCoordinate(pin.coordinate))) {
+                [_taggablePlayers addObject:currentPlayer];
+            }
         }
+    }
+}
+
+- (void)playerTagged:(BOOL)success
+{
+    if (success) {
+        self.state = 0;
     }
 }
 
@@ -226,6 +254,7 @@
     
     self.game = game;
     self.name = name;
+    self.state = 0;
     
     // Call the download items method of the model object
     [_gameJoinModel joinGame:game withName:name];
@@ -235,7 +264,6 @@
 
 - (void) updateMap
 {
-#warning TODO
     // TODO:
     // Update location to server - Thread 1
     if (self.name && self.game) {
@@ -247,8 +275,13 @@
     if (self.name && self.game) {
         [_gameDataModel downloadItemsFromGame:self.game withName:self.name];
     }
-    // Show / Don't show Tag button - T1
-    // Send tag request to server - T1
+    // Show / Don't show Tag button - T3
+    // Send tag request to server - T3
+    if (self.name && self.game && self.state && _taggablePlayers) {// If you're in a game, and it, and there are people to tag...
+        [self.tagButtonView setHidden:NO]; // Show the tag button!
+    } else {
+        [self.tagButtonView setHidden:YES];
+    }
 }
 
 #pragma mark - Location Handler
@@ -292,10 +325,12 @@
 {
     int pinColor;
     
-    if (annotation.subtitle) {
+    if ([annotation.subtitle  isEqual: @"It!"]) {
         pinColor = MKPinAnnotationColorRed;
-    } else {
+    } else if (annotation.subtitle) {
         pinColor = MKPinAnnotationColorGreen;
+    } else {
+        pinColor = MKPinAnnotationColorPurple;
     }
     
     MKAnnotationView *pinView = [self returnPointView:annotation.coordinate andTitle:annotation.title andColor:pinColor];

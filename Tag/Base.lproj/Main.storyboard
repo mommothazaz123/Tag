@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bmw-eK-bjy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bmw-eK-bjy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -19,11 +20,34 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V2t-M6-EKY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQe-tN-UF4">
+                                <rect key="frame" x="16" y="530" width="568" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJT-JH-p84">
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                        <state key="normal" title="Tag">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mJT-JH-p84" firstAttribute="height" secondItem="HQe-tN-UF4" secondAttribute="height" id="D15-gz-dSV"/>
+                                    <constraint firstAttribute="centerX" secondItem="mJT-JH-p84" secondAttribute="centerX" id="TXV-1q-Yr7"/>
+                                    <constraint firstAttribute="centerY" secondItem="mJT-JH-p84" secondAttribute="centerY" id="a8Q-Wr-VTd"/>
+                                    <constraint firstItem="mJT-JH-p84" firstAttribute="width" secondItem="HQe-tN-UF4" secondAttribute="width" id="pu6-m3-QOH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="HQe-tN-UF4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="5jJ-k0-WwT"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="HQe-tN-UF4" secondAttribute="bottom" constant="20" id="Ap4-jF-m8d"/>
                             <constraint firstItem="V2t-M6-EKY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eZF-n8-D9q"/>
+                            <constraint firstAttribute="centerX" secondItem="HQe-tN-UF4" secondAttribute="centerX" id="kKb-V4-HXh"/>
+                            <constraint firstItem="HQe-tN-UF4" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="kYo-JI-Eoe"/>
                             <constraint firstItem="V2t-M6-EKY" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="q4U-Ib-8RV"/>
+                            <constraint firstAttribute="centerY" secondItem="HQe-tN-UF4" secondAttribute="centerY" constant="-255" id="wFP-5y-iYi"/>
                             <constraint firstItem="V2t-M6-EKY" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="xhh-BN-4cL"/>
                             <constraint firstAttribute="trailing" secondItem="V2t-M6-EKY" secondAttribute="trailing" id="yL9-Z1-4fW"/>
                         </constraints>
@@ -31,6 +55,8 @@
                     <navigationItem key="navigationItem" id="ruZ-Uw-Grg"/>
                     <connections>
                         <outlet property="mapView" destination="V2t-M6-EKY" id="8oZ-wg-DcR"/>
+                        <outlet property="tagButton" destination="mJT-JH-p84" id="UpD-Wo-ZXl"/>
+                        <outlet property="tagButtonView" destination="HQe-tN-UF4" id="61g-Td-ouM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

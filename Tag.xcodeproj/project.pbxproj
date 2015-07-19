@@ -21,6 +21,7 @@
 		49D9AECF1B4BB19500B61859 /* TagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D9AECE1B4BB19500B61859 /* TagTests.m */; };
 		49E201C61B5A6FD2001BFCA1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E201C51B5A6FD2001BFCA1 /* Player.m */; };
 		49E201C91B5A7115001BFCA1 /* GameDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E201C81B5A7115001BFCA1 /* GameDataModel.m */; };
+		49E201CC1B5B7A28001BFCA1 /* PlayerTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E201CB1B5B7A28001BFCA1 /* PlayerTagModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		49E201C51B5A6FD2001BFCA1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		49E201C71B5A7115001BFCA1 /* GameDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDataModel.h; sourceTree = "<group>"; };
 		49E201C81B5A7115001BFCA1 /* GameDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDataModel.m; sourceTree = "<group>"; };
+		49E201CA1B5B7A28001BFCA1 /* PlayerTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTagModel.h; sourceTree = "<group>"; };
+		49E201CB1B5B7A28001BFCA1 /* PlayerTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTagModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				49E201C51B5A6FD2001BFCA1 /* Player.m */,
 				49E201C71B5A7115001BFCA1 /* GameDataModel.h */,
 				49E201C81B5A7115001BFCA1 /* GameDataModel.m */,
+				49E201CA1B5B7A28001BFCA1 /* PlayerTagModel.h */,
+				49E201CB1B5B7A28001BFCA1 /* PlayerTagModel.m */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				496E0CFE1B5130C800AEA47F /* GameLeaveModel.m in Sources */,
 				49D9AEBB1B4BB19500B61859 /* ViewController.m in Sources */,
 				496E0CFB1B4E5FD300AEA47F /* GameJoinModel.m in Sources */,
+				49E201CC1B5B7A28001BFCA1 /* PlayerTagModel.m in Sources */,
 				49D9AEB81B4BB19500B61859 /* AppDelegate.m in Sources */,
 				49D9AEB51B4BB19500B61859 /* main.m in Sources */,
 				49E201C61B5A6FD2001BFCA1 /* Player.m in Sources */,
