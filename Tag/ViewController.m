@@ -227,7 +227,12 @@
             } else {
                 pin.subtitle = [NSString stringWithFormat:@"%@", currentPlayer.name];
             }
-            [self.mapView addAnnotation:pin];
+            
+            // only show players that are visible for efficiency
+            if (MKMapRectContainsPoint(self.mapView.visibleMapRect, MKMapPointForCoordinate(pin.coordinate))) {
+                [self.mapView addAnnotation:pin];
+            }
+            
             // Get distance to each player and add them to the taggable array if possible
             MKMapPoint tagAreaMP = MKMapPointForCoordinate(self.locationManager.location.coordinate);
             MKMapRect tagArea = MKMapRectMake(tagAreaMP.x, tagAreaMP.y, MKMapPointsPerMeterAtLatitude(self.locationManager.location.coordinate.latitude)*20, MKMapPointsPerMeterAtLatitude(self.locationManager.location.coordinate.latitude)*20);
