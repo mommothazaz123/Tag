@@ -266,12 +266,11 @@
                 if (MKMapRectContainsPoint(self.mapView.visibleMapRect, MKMapPointForCoordinate(pin.coordinate))) {
                     
                     if (self.state.intValue == 1) {
-                        NSLog(@"%@", @"Checking for taggable players...");
+                        //NSLog(@"%@", @"Checking for taggable players...");
                         // Check to see if the player is within 10m of the player
                         CLCircularRegion *tagArea = [[CLCircularRegion alloc] initWithCenter:self.locationManager.location.coordinate radius:10 identifier:@"tagArea"];
                         if ([tagArea containsCoordinate:playerCoodinates]) {
                             [_taggablePlayers addObject:currentPlayer];
-                            NSLog(@"I can tag %lu players", (unsigned long)[_taggablePlayers count]);
                         }
                     }
                     
@@ -287,6 +286,7 @@
                 }
             }
         }
+        NSLog(@"I can tag %lu players", (unsigned long)[_taggablePlayers count]);
     }
 }
 
