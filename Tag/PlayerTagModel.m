@@ -45,7 +45,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"%lu",(unsigned long)_downloadedData.length);
+    //NSLog(@"%lu",(unsigned long)_downloadedData.length);
     // Ready to notify delegate that data is ready and pass back items
     if (self.delegate && _downloadedData.length == 2) {
         [self.delegate playerTagged:YES];

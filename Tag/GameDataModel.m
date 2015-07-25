@@ -74,7 +74,7 @@
     if (self.delegate)
     {
         [self.delegate gameItemsDownloaded:_players];
-        NSLog(@"%lu", (unsigned long)_downloadedData.length);
+        //NSLog(@"%lu", (unsigned long)_downloadedData.length);
     }
 }
 

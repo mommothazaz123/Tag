@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSNumber *state;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton;
 @property (weak, nonatomic) IBOutlet UIView *tagButtonView;
+@property (weak, nonatomic) IBOutlet UIButton *volunteerItButton;
 
 - (void)leaveGame;
 

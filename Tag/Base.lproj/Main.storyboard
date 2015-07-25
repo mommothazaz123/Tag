@@ -52,11 +52,22 @@
                             <constraint firstAttribute="trailing" secondItem="V2t-M6-EKY" secondAttribute="trailing" id="yL9-Z1-4fW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ruZ-Uw-Grg"/>
+                    <navigationItem key="navigationItem" id="ruZ-Uw-Grg">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ss8-P1-4i9">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="I want to be It!">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="V2t-M6-EKY" id="8oZ-wg-DcR"/>
                         <outlet property="tagButton" destination="mJT-JH-p84" id="UpD-Wo-ZXl"/>
                         <outlet property="tagButtonView" destination="HQe-tN-UF4" id="61g-Td-ouM"/>
+                        <outlet property="volunteerItButton" destination="Ss8-P1-4i9" id="8dp-WM-10V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
